@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователь {{ target_user.email }}</title>
+</head>
+<body>
+    <h1>{{ target_user.email }}</h1>
+    <p>Имя: {{ target_user.first_name }} {{ target_user.last_name }}</p>
+    <p>Активен: {{ target_user.is_active }}</p>
+    <p>Группы: {% for g in target_user.groups.all %}{{ g.name }} {% endfor %}</p>
+
+    <form method="post" action="{% url 'accounts:user_set_group' target_user.pk %}">
+        {% csrf_token %}
+        <select name="group">
+            <option value="">— без группы —</option>
+            {% for g in all_groups %}
+                <option value="{{ g.name }}">{{ g.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Назначить роль</button>
+    </form>
+
+    <form method="post" action="{% url 'accounts:user_toggle_active' target_user.pk %}">
+        {% csrf_token %}
+        <button type="submit">Переключить активность</button>
+    </form>
+
+    <form method="post" action="{% url 'accounts:user_delete' target_user.pk %}">
+        {% csrf_token %}
+        <button type="submit">Удалить пользователя</button>
+    </form>
+
+    <p><a href="{% url 'accounts:user_management_list' %}">К списку</a></p>
+</body>
+</html>

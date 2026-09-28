@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Управление пользователями</title>
+</head>
+<body>
+    <h1>Управление пользователями</h1>
+    <table border="1" cellpadding="6">
+        <tr>
+            <th>Email</th>
+            <th>Имя</th>
+            <th>Активен</th>
+            <th>Группы</th>
+            <th></th>
+        </tr>
+        {% for u in users %}
+            <tr>
+                <td>{{ u.email }}</td>
+                <td>{{ u.first_name }} {{ u.last_name }}</td>
+                <td>{{ u.is_active }}</td>
+                <td>{% for g in u.groups.all %}{{ g.name }} {% endfor %}</td>
+                <td><a href="{% url 'accounts:user_management_detail' u.pk %}">Открыть</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ ad.title }}</title>
+</head>
+<body>
+    <h1>{{ ad.title }}</h1>
+    <p>{{ ad.description }}</p>
+    <p>Автор: {{ ad.author.email }}</p>
+    <p>
+        <a href="{% url 'ads:update' ad.pk %}">Редактировать</a> |
+        <a href="{% url 'ads:delete' ad.pk %}">Удалить</a> |
+        <a href="{% url 'ads:list' %}">К списку</a>
+    </p>
+</body>
+</html>

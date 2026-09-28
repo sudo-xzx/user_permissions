@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Объявления</title>
+</head>
+<body>
+    <h1>Объявления</h1>
+    <p><a href="{% url 'ads:create' %}">Создать объявление</a></p>
+    <ul>
+        {% for ad in ads %}
+            <li>
+                <a href="{% url 'ads:detail' ad.pk %}">{{ ad.title }}</a>
+                — {{ ad.author.email }}
+            </li>
+        {% empty %}
+            <li>Пока нет объявлений.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

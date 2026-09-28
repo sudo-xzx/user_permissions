@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Объявление</title>
+</head>
+<body>
+    <h1>Объявление</h1>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+        <a href="{% url 'ads:list' %}">Отмена</a>
+    </form>
+</body>
+</html>

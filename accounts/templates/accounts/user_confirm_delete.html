@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Удаление пользователя</title>
+</head>
+<body>
+    <h1>Удалить пользователя {{ target_user.email }}?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Да, удалить</button>
+        <a href="{% url 'accounts:user_management_detail' target_user.pk %}">Отмена</a>
+    </form>
+</body>
+</html>
